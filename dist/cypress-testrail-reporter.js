@@ -28,9 +28,12 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
         _this.validate(reporterOptions, 'password');
         _this.validate(reporterOptions, 'projectId');
         _this.validate(reporterOptions, 'suiteId');
+        _this.validate(reporterOptions, 'typeId');
+        _this.validate(reporterOptions, 'groupId');
+        _this.validate(reporterOptions, 'filter');
         runner.on('start', function () {
             var executionDateTime = moment().format('MMM Do YYYY, HH:mm (Z)');
-            var name = (reporterOptions.runName || 'Automated test run') + " " + executionDateTime;
+            var name = (reporterOptions.runName || 'ComeOn Group Automated test run') + " " + executionDateTime;
             var description = 'For the Cypress run visit https://dashboard.cypress.io/#/projects/runs';
             _this.testRail.createRun(name, description);
         });
@@ -66,7 +69,7 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
             if (_this.results.length == 0) {
                 console.log('\n', chalk.magenta.underline.bold('(TestRail Reporter)'));
                 console.warn('\n', 'No testcases were matched. Ensure that your tests are declared correctly and matches Cxxx', '\n');
-               // _this.testRail.deleteRun();
+                // this.testRail.deleteRun();
                 return;
             }
             _this.testRail.publishResults(_this.results);
