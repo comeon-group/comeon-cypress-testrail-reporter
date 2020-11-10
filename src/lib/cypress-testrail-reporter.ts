@@ -25,7 +25,7 @@ export class CypressTestRailReporter extends reporters.Spec {
 
     runner.on('start', () => {
       const executionDateTime = moment().format('MMM Do YYYY, HH:mm (Z)');
-      const name = `${reporterOptions.runName || 'Automated test run'} ${executionDateTime}`;
+      const name = `${reporterOptions.runName || 'ComeOn Group Automated test run'} ${executionDateTime}`;
       const description = 'For the Cypress run visit https://dashboard.cypress.io/#/projects/runs';
       this.testRail.createRun(name, description);
     });
