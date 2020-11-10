@@ -5,6 +5,10 @@ export interface TestRailOptions {
   projectId: number;
   suiteId: number;
   assignedToId?: number;
+  includeAllInTestRun?: boolean;
+  typeId?: number;
+  groupId?: number;
+  filter?: string;
 }
 
 export enum Status {
