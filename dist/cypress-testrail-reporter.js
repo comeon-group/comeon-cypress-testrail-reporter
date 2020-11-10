@@ -29,8 +29,6 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
         _this.validate(reporterOptions, 'projectId');
         _this.validate(reporterOptions, 'suiteId');
         _this.validate(reporterOptions, 'typeId');
-        _this.validate(reporterOptions, 'groupId');
-        _this.validate(reporterOptions, 'filter');
         runner.on('start', function () {
             var executionDateTime = moment().format('MMM Do YYYY, HH:mm (Z)');
             var name = (reporterOptions.runName || 'ComeOn Group Automated test run') + " " + executionDateTime;
