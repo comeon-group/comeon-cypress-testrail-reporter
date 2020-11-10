@@ -7,19 +7,28 @@ on:
       - master
 
 jobs:
-    publish:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
+      - run: npm run build
 
-            # Publish to npm registry
-            - uses: actions/setup-node@v1
-              with:
-                  node-version: 12
-                  registry-url: https://registry.npmjs.org/
-                  scope: '@comeon'
-            - run: npm run build
-            - run: npm publish --access public
-              
-              env:
-                  NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v2
+        # Publish to npm registry
+        - uses: actions/setup-node@v1
+          with:
+              node-version: 12
+              registry-url: https://registry.npmjs.org/
+              scope: '@comeon'
+        - run: npm publish --access public
+
+          env:
+              NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
