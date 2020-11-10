@@ -9,8 +9,26 @@ export class TestRail {
   constructor(private options: TestRailOptions) {
     this.base = `https://${options.domain}/index.php?/api/v2`;
   }
+  
+  public getCases () {
+  return axios({
+    method:'get',
+    url: `${this.base}/get_cases/${this.options.projectId}&suite_id=${this.options.suiteId}&type_id=${this.options.typeId}`,
+    headers: { 'Content-Type': 'application/json' }, 
+    auth: {
+        username: this.options.username,
+        password: this.options.password
+    } 
+  })
+    .then(response => response.data.map(item =>item.id))
+    .catch(error => console.error(error));
+}
 
-  public createRun(name: string, description: string) {
+    public async createRun (name: string, description: string) {
+    if (this.options.includeAllInTestRun === false){
+      this.includeAll = false;
+      this.caseIds =  await this.getCases();
+    }  
     axios({
       method: 'post',
       url: `${this.base}/add_run/${this.options.projectId}`,
@@ -23,7 +41,8 @@ export class TestRail {
         suite_id: this.options.suiteId,
         name,
         description,
-        include_all: true,
+        include_all: this.includeAll,
+        case_ids: this.caseIds
       }),
     })
       .then(response => {
@@ -31,6 +50,27 @@ export class TestRail {
       })
       .catch(error => console.error(error));
   }
+  //public createRun(name: string, description: string) {
+    //axios({
+      // method: 'post',
+      //url: `${this.base}/add_run/${this.options.projectId}`,
+      //headers: { 'Content-Type': 'application/json' },
+      //auth: {
+        //username: this.options.username,
+        //password: this.options.password,
+     // },
+      //data: JSON.stringify({
+      //  suite_id: this.options.suiteId,
+     //   name,
+     //   description,
+     //   include_all: true,
+    //  }),
+   // })
+   //   .then(response => {
+   //     this.runId = response.data.id;
+   //   })
+    //  .catch(error => console.error(error));
+ // }
 
   public deleteRun() {
     axios({
