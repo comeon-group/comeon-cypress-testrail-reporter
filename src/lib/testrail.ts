@@ -5,6 +5,8 @@ import { TestRailOptions, TestRailResult } from './testrail.interface';
 export class TestRail {
   private base: String;
   private runId: Number;
+  private includeAll: Boolean = true;
+  private caseIds: Number[] = [];
 
   constructor(private options: TestRailOptions) {
     this.base = `https://${options.domain}/index.php?/api/v2`;
