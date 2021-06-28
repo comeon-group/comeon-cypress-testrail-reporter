@@ -57,7 +57,7 @@ var TestRail = /** @class */ (function () {
             var _this = this;
             if (this.options.includeAllInTestRun === false) {
                 this.includeAll = false;
-                this.caseIds = this.getCases(suiteId);
+                this.caseIds = this.getCases(this.options.suiteId);
             }
             axios({
                 method: 'post',
