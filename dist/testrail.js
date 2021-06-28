@@ -38,7 +38,7 @@ var TestRail = /** @class */ (function () {
         if (this.options.typeId) {
             url += "&type_id=" + this.options.typeId;
         }
-        return this.makeSync(axios({
+        return axios({
             method: 'get',
             url: url,
             headers: { 'Content-Type': 'application/json' },
@@ -50,8 +50,9 @@ var TestRail = /** @class */ (function () {
             .then(function (response) {
             return response.data.map(function (item) { return item.id; });
         })
-            .catch(function (error) { return console.error(error); }));
+            .catch(function (error) { return console.error(error); });
     };
+
 
     TestRail.prototype.createRun = function (name, description) {
         if (globalRunId == null) {
