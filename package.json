@@ -1,6 +1,6 @@
 {
   "name": "@comeon/cypress-testrail-accumulative-reporter",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "A Testrail reporter for cypress including TestRail API basic library",
   "main": "index.js",
   "private": false,
@@ -28,6 +28,7 @@
     "btoa": "^1.1.2",
     "chalk": "^2.4.1",
     "mocha": "^2.2.5",
+    "deasync": "^0.1.21",
     "moment": "^2.22.1"
   },
   "devDependencies": {
