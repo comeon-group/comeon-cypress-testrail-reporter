@@ -25,7 +25,7 @@ var TestRail = /** @class */ (function () {
                     name: name,
                     description: description,
                     include_all: false,
-                    case_ids: this.caseIds:
+                    case_ids: this.caseIds
                 }),
             })
                 .then(function (response) {
