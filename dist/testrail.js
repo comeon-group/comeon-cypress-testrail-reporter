@@ -3,6 +3,7 @@ var globalRunId = null;
 Object.defineProperty(exports, "__esModule", {value: true});
 var axios = require('axios');
 var chalk = require('chalk');
+var deasync = require('deasync');
 var TestRail = /** @class */ (function () {
     function TestRail(options) {
         this.options = options;
