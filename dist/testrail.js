@@ -3,7 +3,6 @@ var globalRunId = null;
 Object.defineProperty(exports, "__esModule", {value: true});
 var axios = require('axios');
 var chalk = require('chalk');
-var deasync = require('deasync');
 var TestRail = /** @class */ (function () {
     function TestRail(options) {
         this.options = options;
@@ -74,7 +73,8 @@ var TestRail = /** @class */ (function () {
                     name: name,
                     description: description,
                     include_all: this.includeAll,
-                    case_ids: this.caseIds
+                    case_ids: [5208,5626,5215,5216,5560,5561,5187,5496,5196,5194,5186,5562,5575,5566,5519,5520,5521,5522,5529,5576,5627,5642,5508,5509,5510,5511,5517,5518,5198,5199,5200,5201,5202,5203,5204,5205,5206,5207,5545,5502,5503,5504,5505,5506,5507,5512,5514,5534,5537,5546,5547,5548,5549,5707,5649,5650,5651,5652,5653,5654]
+                    //case_ids: this.caseIds
                 }),
             })
                 .then(function (response) {
